@@ -15,7 +15,8 @@ TARGET_USES_AOSP := false
 TARGET_COMPILE_WITH_MSM_KERNEL := true
 TARGET_HAS_QC_KERNEL_SOURCE := true
 
--include $(QCPATH)/common/msm8226/BoardConfigVendor.mk
+# -include $(QCPATH)/common/msm8226/BoardConfigVendor.mk
+-include vendor/xiaomi/armani/BoardConfigVendor.mk
 
 #TODO: Fix-me: Setting TARGET_HAVE_HDMI_OUT to false
 # to get rid of compilation error.
@@ -40,18 +41,20 @@ TARGET_HARDWARE_3D := false
 TARGET_BOARD_PLATFORM := msm8226
 TARGET_BOOTLOADER_BOARD_NAME := MSM8226
 
+
+
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 earlyprintk androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 2048
 BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
 BOARD_RAMDISK_OFFSET     := 0x02000000
+BOARD_KERNEL_SEPARATED_DT := true
 
 # Enables Adreno RS driver
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
-#TARGET_BOOTIMG_SIGNED := true
-
 # Shader cache config options
-# Maximum size of the  GLES Shaders that can be cached for reuse.
+# Maximum size of the GLES Shaders that can be cached for reuse.
 # Increase the size if shaders of size greater than 12KB are used.
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 
@@ -63,9 +66,6 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
-
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 earlyprintk androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37
-BOARD_KERNEL_SEPARATED_DT := true
 
 BOARD_EGL_CFG := device/xiaomi/armani/egl.cfg
 

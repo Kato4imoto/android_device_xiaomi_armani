@@ -15,11 +15,14 @@ persist.rild.nitz_short_ons_0=
 persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
-ril.subscription.types=NV,RUIM
+ril.subscription.types=RUIM
 DEVICE_PROVISIONED=1
 persist.radio.msgtunnel.start=false
 # Start in cdma mode
-ro.telephony.default_network=5
+# ro.telephony.default_network=5
+
+# Enable DSDS
+persist.radio.multisim.config = dsds
 
 #
 # system props for the cne module
@@ -43,8 +46,9 @@ persist.demo.hdmirotationlock=false
 ro.hdmi.enable=true
 qcom.hw.aac.encoder=true
 
-#system props for the MM modules
-
+#
+# system props for the MM modules
+#
 media.stagefright.enable-player=true
 media.stagefright.enable-http=true
 media.stagefright.enable-aac=true
@@ -60,6 +64,7 @@ mm.enable.qcom_parser=37491
 # VIDC: debug_levels
 # 1:ERROR 2:HIGH 4:LOW 0:NOlogs 7:AllLogs
 vidc.debug.level=1
+
 #
 # system props for the data modules
 #
@@ -92,16 +97,13 @@ persist.fuse_sdcard=true
 #
 ro.qc.sdk.audio.ssr=false
 ##fluencetype can be "fluence" or "fluencepro" or "none"
-ro.qc.sdk.audio.fluencetype=none
+ro.qc.sdk.audio.fluencetype=fluence
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
 persist.audio.fluence.speaker=true
 
 # Enable/disable cabl
 ro.qualcomm.cabl=1
-
-# system prop for NFC DT
-ro.nfc.port=I2C
 
 #property to enable user to access Google WFD settings
 persist.debug.wfd.enable=1

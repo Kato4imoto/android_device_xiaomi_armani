@@ -1,5 +1,4 @@
 TARGET_USES_QCOM_BSP := true
-TARGET_USES_QCA_NFC := false
 
 ifeq ($(TARGET_USES_QCOM_BSP), true)
 # Add QC Video Enhancements flag
@@ -13,8 +12,8 @@ DEVICE_PACKAGE_OVERLAYS := device/xiaomi/armani/overlay
 
 # media_profiles and media_codecs xmls for 8226
 ifeq ($(TARGET_ENABLE_QC_AV_ENHANCEMENTS), true)
-PRODUCT_COPY_FILES += device/xiaomi/armani/media/media_profiles_8226.xml:system/etc/media_profiles.xml \
-                      device/xiaomi/armani/media/media_codecs_8226.xml:system/etc/media_codecs.xml
+PRODUCT_COPY_FILES += device/xiaomi/armani/prebuilt/system/etc/media_profiles.xml:system/etc/media_profiles.xml \
+                      device/xiaomi/armani/prebuilt/system/etc/media_codecs.xml:system/etc/media_codecs.xml
 endif
 
 $(call inherit-product, device/qcom/common/common.mk)
@@ -59,39 +58,6 @@ PRODUCT_PACKAGES += \
     libantradio \
     antradio_app
 
-# NFC packages
-ifeq ($(TARGET_USES_QCA_NFC),true)
-NFC_D := true
-
-ifeq ($(NFC_D), true)
-    PRODUCT_PACKAGES += \
-        libnfcD-nci \
-        libnfcD_nci_jni \
-        nfc_nci.msm8226 \
-        NfcDNci \
-        Tag \
-        com.android.nfc_extras \
-        com.android.nfc.helper
-else
-    PRODUCT_PACKAGES += \
-    libnfc-nci \
-    libnfc_nci_jni \
-    nfc_nci.msm8226 \
-    NfcNci \
-    Tag \
-    com.android.nfc_extras
-endif
-
-# file that declares the MIFARE NFC constant
-# Commands to migrate prefs from com.android.nfc3 to com.android.nfc
-# NFC access control + feature files + configuration
-PRODUCT_COPY_FILES += \
-        packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt \
-        frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
-        frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
-        frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml
-endif # TARGET_USES_QCA_NFC
-
 PRODUCT_COPY_FILES += \
         frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
         frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml
@@ -105,3 +71,4 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 PRODUCT_COPY_FILES += \
     device/xiaomi/armani/prebuilt/system/etc/whitelist_appops.xml:system/etc/whitelist_appops.xml
+$(call inherit-product, vendor/xiaomi/armani/armani-vendor.mk)
