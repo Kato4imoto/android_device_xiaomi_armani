@@ -6,29 +6,29 @@ ifeq ($(TARGET_USES_QCOM_BSP), true)
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 endif #TARGET_USES_QCOM_BSP
 
-DEVICE_PACKAGE_OVERLAYS := device/qcom/msm8226/overlay
+DEVICE_PACKAGE_OVERLAYS := device/xiaomi/armani/overlay
 
 #TARGET_DISABLE_DASH := true
 #TARGET_DISABLE_OMX_SECURE_TEST_APP := true
 
 # media_profiles and media_codecs xmls for 8226
 ifeq ($(TARGET_ENABLE_QC_AV_ENHANCEMENTS), true)
-PRODUCT_COPY_FILES += device/qcom/msm8226/media/media_profiles_8226.xml:system/etc/media_profiles.xml \
-                      device/qcom/msm8226/media/media_codecs_8226.xml:system/etc/media_codecs.xml
+PRODUCT_COPY_FILES += device/xiaomi/armani/media/media_profiles_8226.xml:system/etc/media_profiles.xml \
+                      device/xiaomi/armani/media/media_codecs_8226.xml:system/etc/media_codecs.xml
 endif
 
 $(call inherit-product, device/qcom/common/common.mk)
 
-PRODUCT_NAME := msm8226
-PRODUCT_DEVICE := msm8226
+PRODUCT_NAME := armani
+PRODUCT_DEVICE := armani
 
 PRODUCT_BOOT_JARS += qcmediaplayer:WfdCommon:oem-services:qcom.fmradio:org.codeaurora.Performance:vcard
 
 # Audio configuration file
 PRODUCT_COPY_FILES += \
-    device/qcom/msm8226/audio_policy.conf:system/etc/audio_policy.conf \
-    device/qcom/msm8226/audio_effects.conf:system/vendor/etc/audio_effects.conf \
-    device/qcom/msm8226/mixer_paths.xml:system/etc/mixer_paths.xml
+    device/xiaomi/armani/prebuilt/system/etc/audio_policy.conf:system/etc/audio_policy.conf \
+    device/xiaomi/armani/prebuilt/system/vendor/etc/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+    device/xiaomi/armani/prebuilt/system/etc/mixer_paths.xml:system/etc/mixer_paths.xml
 
 PRODUCT_PACKAGES += \
     libqcomvisualizer \
@@ -43,8 +43,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += fstab.qcom
 #wlan driver
 PRODUCT_COPY_FILES += \
-    device/qcom/msm8226/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
-    device/qcom/msm8226/WCNSS_qcom_wlan_nv.bin:persist/WCNSS_qcom_wlan_nv.bin
+    device/xiaomi/armani/prebuilt/system/etc/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
+    device/xiaomi/armani/prebuilt/persist/WCNSS_qcom_wlan_nv.bin:persist/WCNSS_qcom_wlan_nv.bin
 
 PRODUCT_PACKAGES += \
     wpa_supplicant_overlay.conf \
@@ -104,4 +104,4 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.whitelist=/system/etc/whitelist_appops.xml
 
 PRODUCT_COPY_FILES += \
-    device/qcom/msm8226/whitelist_appops.xml:system/etc/whitelist_appops.xml
+    device/xiaomi/armani/prebuilt/system/etc/whitelist_appops.xml:system/etc/whitelist_appops.xml
